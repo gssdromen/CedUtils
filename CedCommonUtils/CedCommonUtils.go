@@ -5,7 +5,8 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"path/filepath"
+	"path"
+	"runtime"
 )
 
 // ReadLine 从文件中逐行读取
@@ -39,10 +40,8 @@ func ReadBytes(filename string) ([]byte, error) {
 }
 
 // GetCurrentCodePath 获得现在所执行的文件所在的路径
-func GetCurrentCodePath() (string, error) {
-	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	if err != nil {
-		return "", err
-	}
-	return dir, err
+func GetCurrentCodePath() (filePath string, dirPath string) {
+	_, filePath, _, _ = runtime.Caller(1)
+	dirPath = path.Dir(filePath)
+	return
 }
