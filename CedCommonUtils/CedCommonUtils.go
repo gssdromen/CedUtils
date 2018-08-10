@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 // ReadLine 从文件中逐行读取
@@ -35,4 +36,12 @@ func ReadBytes(filename string) ([]byte, error) {
 		return nil, err
 	}
 	return data, nil
+}
+
+func getCurrentCodePath() (string, error) {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		return "", err
+	}
+	return dir, err
 }
