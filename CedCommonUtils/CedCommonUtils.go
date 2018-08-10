@@ -38,7 +38,8 @@ func ReadBytes(filename string) ([]byte, error) {
 	return data, nil
 }
 
-func getCurrentCodePath() (string, error) {
+// GetCurrentCodePath 获得现在所执行的文件所在的路径
+func GetCurrentCodePath() (string, error) {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
 		return "", err
